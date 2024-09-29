@@ -1,0 +1,89 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNXqhcT5SBsuVgpaCUYw68Y",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/adarshv2403/Artificial-Intelligence-Lab-/blob/main/Lab%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Graph:\n",
+        "    def __init__(self, V):\n",
+        "        self.graph = {}\n",
+        "        for i in range(V):\n",
+        "            self.graph[i] = []\n",
+        "\n",
+        "    def add_edge(self, start, end):\n",
+        "        self.graph[start].append(end)\n",
+        "        self.graph[end].append(start)\n",
+        "\n",
+        "    def BFS(self, start):\n",
+        "        visited = []  # creating array for visited\n",
+        "        queue = []    # creating array for queue\n",
+        "        queue.append(start)  # putting first element in queue\n",
+        "        visited.append(start)  # putting the first element in visited\n",
+        "\n",
+        "        while len(queue) != 0:  # applying condition till the loop will execute\n",
+        "            temp = queue.pop(0)  # removing the first value of the queue\n",
+        "\n",
+        "            for i in self.graph[temp]:\n",
+        "                if i not in visited:\n",
+        "                    queue.append(i)\n",
+        "                    visited.append(i)\n",
+        "\n",
+        "        return visited\n",
+        "\n",
+        "\n",
+        "# Example\n",
+        "g = Graph(5)\n",
+        "g.add_edge(0, 1)\n",
+        "g.add_edge(0, 2)\n",
+        "g.add_edge(1, 2)\n",
+        "g.add_edge(1, 3)\n",
+        "g.add_edge(3, 4)\n",
+        "\n",
+        "\n",
+        "print(g.BFS(0))\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "R9tZKrC2L5ii",
+        "outputId": "3ed86190-f195-4c63-dc65-c9641e7fc204"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[0, 1, 2, 3, 4]\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
